@@ -1,6 +1,7 @@
 package css.cis3334.intentsperformances;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.provider.CalendarContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,6 +38,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Do something in response to button click
                 textViewStatus.setText("Code should display website for performance 1");
+
+                //Uri variable initialized to events page. Intent created and called if activity can be resolved.
+                Uri webpageRobot = Uri.parse("http://www.css.edu/about/spotlight-arts-and-lectures/calendar.html#/?i=4");
+                Intent webIntent = new Intent(Intent.ACTION_VIEW, webpageRobot);
+                if(webIntent.resolveActivity(getPackageManager()) != null)
+                {
+                    startActivity(webIntent);
+                }
             }
         });
 
@@ -72,6 +81,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Do something in response to button click
                 textViewStatus.setText("Code should display map for performance 1");
+
+                //Provide location via map intent
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW);
+
+                //Set location to provide(Mitchell Auditorium)
+                mapIntent.setData(Uri.parse("geo: 49.2161598205566,-122.696105957031?z=17"));
+
+                if(mapIntent.resolveActivity(getPackageManager()) != null)
+                {
+                    startActivity(mapIntent);
+                }
             }
         });
 
